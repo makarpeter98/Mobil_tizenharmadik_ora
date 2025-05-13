@@ -13,12 +13,10 @@ import java.util.Locale;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
-
-    // UI elements
+    //teszt commit
     private ImageView microphoneButton;
     private TextView textView;
 
-    // Request code for speech input intent
     private static final int REQUEST_CODE_SPEECH_INPUT = 1;
 
     @Override
@@ -29,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    // Handle the result from speech recognition activity
     @Override
     @Deprecated
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
