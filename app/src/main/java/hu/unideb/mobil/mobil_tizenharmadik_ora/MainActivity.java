@@ -28,6 +28,25 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void torchMainAction(View view) {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHR_FILENAME, 0);
+        torch = sharedPreferences.getBoolean(TORCH_KEY, true);
+        CameraManager camManager = (CameraManager) this.getSystemService(Context.CAMERA_SERVICE);
 
+        String cameraID = null;
+
+        try {
+            cameraID = camManager.getCameraIdList()[0];
+            camManager.setTorchMode(cameraID, torch);
+            torch = !torch;
+        }
+        catch (CameraAccessException e)
+        {
+            e.printStackTrace();
+        }
+
+        torchButton.setText("Torch" + (torch ? "on" : "off"));
+        SharedPreferences.Editor prefEditor = sharedPreferences.edit();
+        prefEditor.putBoolean(TORCH_KEY, torch);
+        prefEditor.apply();
     }
 }
